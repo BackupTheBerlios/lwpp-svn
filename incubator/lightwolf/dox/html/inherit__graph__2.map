@@ -1,0 +1,9 @@
+base referer
+rect $classlwpp_1_1_instance_adaptor.html 10,95 194,122
+rect $classlwpp_1_1_image_filter_adaptor.html 259,109 462,135
+rect $classlwpp_1_1_panel_image_filter_adaptor.html 530,21 767,47
+rect $classlwpp_1_1_x_panel_image_filter_adaptor.html 526,83 771,110
+rect $classlwpp_1_1_interface_adaptor.html 9,19 195,46
+rect $classlwpp_1_1_panel_interface_adaptor.html 250,7 471,34
+rect $classlwpp_1_1_x_panel_interface_adaptor.html 246,58 475,85
+rect $classlwpp_1_1_item_adaptor.html 21,146 183,173

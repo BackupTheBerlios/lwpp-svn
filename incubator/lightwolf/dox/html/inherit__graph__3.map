@@ -1,0 +1,10 @@
+base referer
+rect $classlwpp_1_1_instance_handler.html 9,95 164,122
+rect $classlwpp_1_1_image_filter_handler.html 228,109 398,135
+rect $classlwpp_1_1_image_filter_panel_handler.html 466,21 672,47
+rect $classlwpp_1_1_image_filter_x_panel_handler.html 462,83 676,110
+rect $class_un_multiply.html 725,83 810,110
+rect $classlwpp_1_1_interface_handler.html 9,19 164,46
+rect $classlwpp_1_1_panel_interface_handler.html 218,7 408,34
+rect $classlwpp_1_1_x_panel_interface_handler.html 213,58 413,85
+rect $classlwpp_1_1_item_handler.html 21,146 152,173
