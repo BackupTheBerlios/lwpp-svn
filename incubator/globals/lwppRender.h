@@ -3,27 +3,11 @@
 //=============================================================================
 ///
 /// \File globalWrap.h
-///   Declaration and definition of LWPPGlobal - the base class for
-///   LightWrap's globalTypes.
-///
-///   Definition of a globalType: Any value returned by a call to
-///   LightWave's global function.
-///
-///   Each globalType is derived from LWPPGlobal.
-///
-///   Because SystemID, ProductInfo and LocaleInfo are captured in
-///   LWPPGlobal, there is no need to create these as separate globalTypes.
+///   Declaration and definition of LWPPInterfaceInfo
 ///
 /// CONTENTS:
 /// ~~~~~~~~
-///	  LWPPGlobal - the mother of all globalTypes
-///
-///   LWPPFileRequester - contains all the functionality of LW's fileRequest
-///     globals and the utility functions that they use.
-///
-///	  LWPPColorActivate - an encapsulation of LWColorActivate.
-///
-///   LWPPMessageFuncs - an encapsulation of LWMessageFuncs.
+///	  LWPPInterfaceInfo - Use in Layout to examine various settings.
 ///
 ///	\Author	CWCunningham
 ///
