@@ -29,10 +29,12 @@
 ///
 //=============================================================================
 
-#include <lwserver.h> ///< LW GlobalFunc
-#include <lwhost.h>   ///< LW ProductInfo, SystemID, and LocaleInfo
-#include <lwtypes.h>  ///< NULL
+#include <lwserver.h> // LW GlobalFunc
+#include <lwhost.h>   // LW ProductInfo, SystemID, and LocaleInfo
+#include <lwtypes.h>  // NULL
 
+/// The namespace for all LightWrap++ code.
+//
 namespace lwpp
 {
 //*****************************************************************************
@@ -53,12 +55,20 @@ class LWPPGlobal
 	/// a session. Once the constructor is called, these values
 	/// will live on, even after destruction.
 	//
-	/*\@{*/
-  	static GlobalFunc *GLOBAL;
+	/* @{ */
+  	static GlobalFunc   *GLOBAL;
 	static unsigned long SystemID;
 	static unsigned long ProductInfo;
 	static unsigned long LocaleInfo;
-	/*\@}*/
+	/* @} */
+	/// Other variables we capture
+	/* @{ */
+	long                 pluginVersion;
+	/// Should we capture this here, or does it rightly
+	/// belong in the plugin wrapper?
+	//
+	// void				*local;
+	/* @} */
 
   public:
 
@@ -177,11 +187,25 @@ class LWPPGlobal
 	//=========================================================================
 	/// build - returns the Build number of the product.
 	///
-	/// Known build numbers
-	///		Windows
-	///		7.5  - 572
-	///		7.5c - 584
-	///		7.5d - 598
+	/// Known build numbers - Special Thanks to Lynx3D for collecting these
+	///		Windows & Mac
+	///
+	///		6.0:   429
+	///		6.0b:  446
+	///
+	///		6.5:   471, 484 (?)
+	///		6.5b:  508
+	///
+	///		7.0:   537
+	///		7.0b:  543
+	///
+	///		7.5:   572
+	///		7.5b:  582
+	///		7.5c:  584
+	///		7.5d:  598
+	///
+	///		8.0:   690
+	///		8.0.1: 734
 	///
 	/// If you know any build numbers for any platform which are not
 	/// listed here, please report them to LightWrap++
@@ -218,13 +242,17 @@ class LWPPGlobal
 
 	//=========================================================================
 	/// version - returns the version number passed to the constructor.
+	///
+	/// I would like to convert this to an unsigned long, but existing code
+	/// may depend on it's original type.
+	///
 	/// Tested OK
 	//
-	unsigned long version()
+	long version()
 	{
-		/// This doesn't come from LocaleInfo, I just stored it there.
+		/// The version variable passed to the activate function.
 		//
-		return (LocaleInfo >> 16) & 0x0000ffff;
+		return pluginVersion;
 	}
 
 	//=========================================================================
@@ -258,12 +286,12 @@ class LWPPFileRequester : public LWPPGlobal
 {
 	/// Pointers to the functions returned from GLOBAL
 	//
-	/*\@{*/
+	/* @{ */
 	LWFileReqFunc      *fileRequestFunc;
 	LWFileActivateFunc *fileActivateFunc;
 	LWFileTypeFunc     *fileTypeFunc;
     LWDirInfoFunc	   *dirInfoFunc;
-	/*\@}*/
+	/* @} */
   public:
 
 	//=========================================================================

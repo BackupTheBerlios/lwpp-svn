@@ -20,10 +20,12 @@ namespace lwpp
 {
 //*****************************************************************************
 ///
-/// \class LWPPInterfaceInfo - This class must be constructed in your activate function
-///	in order for any globals derived from this class to work. It can be
-/// constructed as an automatic variable, or on the heap. Because the
-/// working values are static, they survive destruction
+/// \class LWPPInterfaceInfo - Use this global to obtain various information
+///	about the state of Layout. You will need to use the evaluate function in
+/// order to alter these states.
+///
+///	\todo - Add evaluate calls so that read/write access is captured in the
+///         same class.
 ///
 //*****************************************************************************
 class LWPPInterfaceInfo : public LWPPGlobal
@@ -275,11 +277,13 @@ class LWPPInterfaceInfo : public LWPPGlobal
 	}
 	//=========================================================================
 	/// alertLevel - returns one of the following:
-	///		LWALERT_BEGINNER        0
-	///     LWALERT_INTERMEDIATE    1
-	///     LWALERT_EXPERT          2
-	/// Added in version 7
+	///		- LWALERT_BEGINNER        0
+	///     - LWALERT_INTERMEDIATE    1
+	///     - LWALERT_EXPERT          2
 	/// Returns -1 in case of a BAD_GLOBAL
+	///
+	/// Added in version 7
+	///
 	/// Tested OK
 	//
 	int alertLevel()
@@ -291,16 +295,15 @@ class LWPPInterfaceInfo : public LWPPGlobal
 	}
 	//=========================================================================
 	/// autoKeyCreate - returns one of the following:
-	///		LWAKC_OFF               0
-	///     LWAKC_MODIFIED          1
-	///     LWAKC_ALL               2
-	/// Added in version 7.5 ???
+	///		- LWAKC_OFF               0
+	///     - LWAKC_MODIFIED          1
+	///     - LWAKC_ALL               2
+	///
 	/// Returns -1 in case of a BAD_GLOBAL
 	///
+	/// Added in version 7.0
 	/// NOTICE the use of the build() function to prevent crashes
-	/// when working in 7.5b or less. Support for this member may have
-	/// existed before 7.5c ... if you know when it was added, please
-	/// report that to LightWrap++
+	/// when working in 7.0b or less.
 	//
 	int autoKeyCreate()
 	{

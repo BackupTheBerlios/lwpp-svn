@@ -1,28 +1,22 @@
 /*
 ======================================================================
-hello.c
+hello.c - A simple LayoutGeneric example.
 
-A simple LayoutGeneric example.
+	Ernie Wright  20 Mar 00
 
-Ernie Wright  20 Mar 00
-
-Heavily modified to test LWPPGlobal global wraps.
+hello.cpp - Heavily modified to test LWPPGlobal global wraps.
+			1/5/05 - More changes and cosmetics.
 ====================================================================== */
 
-// #include <lwserver.h>         /* all plug-ins need this        */
-// #include <lwhost.h>           /* for the LWMessageFuncs global */
-
-// Includes lwserver.h and lwhost.h
-#include "globalWrap.h" ///< LWPPGlobal Mother of all globals
-#include "lwppRender.h" ///< LWPPInterfaceInfo
+#include "globalWrap.h"          ///< LWPPGlobal Mother of all globals
+						         ///< & LWPPMessageFuncs
+#include "lwppRender.h"          ///< LWPPInterfaceInfo
 
 #include <lwgeneric.h>           /* for the LayoutGeneric class   */
 #include <lwpanel.h>             /* for "classic" panels          */
 
 #include <stdio.h>               /* for NULL #define              */
 #include <string.h>              // strlen
-// Will be using LWPPMessageFuncs globalType
-// LWMessageFuncs *msg;          /* the message functions         */
 
 LWPanelFuncs *panf;              /* the panel functions           */
 LWPanelID panel;                 /* the panel                     */
@@ -30,7 +24,7 @@ LWControl *ctl;                  /* a control on the panel        */
 LWPanControlDesc desc;           /* used by macros in lwpanel.h   */
 LWValue sval = { LWT_STRING };   /*  read lwpanel.h to see how    */
 char edit[ 80 ] =                /* string for the edit control   */
-   "This is an edit field.";
+	"This is an edit field.";
 
 
 /*
@@ -43,7 +37,7 @@ generic from the generic list on the General Options panel.
 
 XCALL_( int )
 DemoGeneric( long version, GlobalFunc *global, void *Local,
-   void *serverData )
+				void *serverData )
 {
 	/// that cheesy pointer casting I hope we will get rid of
 	//
@@ -95,13 +89,35 @@ DemoGeneric( long version, GlobalFunc *global, void *Local,
 		returnValue = AFUNC_BADGLOBAL;
 		return returnValue;
 	}
-	int alertLevel;
-	alertLevel = interfaceInfo.alertLevel();
-	char alertString[13];
-	strcpy(alertString, "AlertLevel 0");
 
-	if (alertLevel)
+	// Capture the users alert level setting. If it's anything other
+	// than beginner, set it to beginner so that the following message
+	// funcs become interactive.
+	//
+	int alertLevel;
+	char alertString[13];
+
+	// Make sure that the alertLevel call is supported by the running
+	// version of Lightwave.
+	//
+	alertLevel = interfaceInfo.alertLevel();
+	switch (alertLevel)
+	{
+	case -1:
+		// Unsupported
+		//
+		break;
+	case 0:
+		// Users alert level is already beginner, so there's no need to
+		// alter it.
+		//
+		break;
+	case 1: // User alert level intermediate.
+	case 2: // User alert level expert.
+		strcpy(alertString, "AlertLevel 0");
 		local->evaluate(local->data, alertString);
+		break;
+	}
 
 	int answer;
 	// ============================================ Test yesNo()
@@ -109,12 +125,12 @@ DemoGeneric( long version, GlobalFunc *global, void *Local,
 	answer = message.yesNo("Reality check","Operator !() says global is",
 					(returnValue == AFUNC_OK) ? "OK" : "BAD");
 
-///             3          2    1   0	     -1
-/// ---------------------------------------------------
-/// okCancel    -          -    OK  Cancel	 Bad_Global
-/// yesNo       -          -    Yes No       Bad_Global
-/// yesNoCan    -          Yes  No  Cancel   Bad_Global
-/// yesNoAll    Yes to All Yes  No  Cancel   Bad_Global
+	///             3          2    1   0        -1
+	/// ---------------------------------------------------
+	/// okCancel    -          -    OK  Cancel   Bad_Global
+	/// yesNo       -          -    Yes No       Bad_Global
+	/// yesNoCan    -          Yes  No  Cancel   Bad_Global
+	/// yesNoAll    Yes to All Yes  No  Cancel   Bad_Global
 
 	switch (answer)
 	{
@@ -134,14 +150,12 @@ DemoGeneric( long version, GlobalFunc *global, void *Local,
 			message.info("Hmmmm", "Unexpected returnValue from yesNo");
 			break;
 	}
-   int ok;
-   // unsigned long sysid;
-   // long ver;
+	int ok;
 
-   /* Make sure Layout calls us with the right version of the
-      LWLayoutGeneric structure.  Because of a version numbering bug
-      in build 429, we need to take a couple of extra steps in generic
-      class plug-ins to verify the version. */
+	/*	Make sure Layout calls us with the right version of the
+		LWLayoutGeneric structure.  Because of a version numbering bug
+		in build 429, we need to take a couple of extra steps in generic
+		class plug-ins to verify the version. */
 
 	/// WHAT !
 	/// Speaking of bugs, here's an extraction of the build from the
@@ -150,69 +164,67 @@ DemoGeneric( long version, GlobalFunc *global, void *Local,
 	/// not LWSystemID. The other bug is that the build number has to
 	/// be shifted left 4 bits before it could ever be an odd number.
 	//
-   // sysid = ( unsigned long ) global( LWSYSTEMID_GLOBAL, GFUSE_TRANSIENT );
-   // ver = ( sysid & LWINF_BUILD ) == 429 ? 2 : 4;
-   // if ( version != ver ) return AFUNC_BADVERSION;
+	// sysid = ( unsigned long ) global( LWSYSTEMID_GLOBAL, GFUSE_TRANSIENT );
+	// ver = ( sysid & LWINF_BUILD ) == 429 ? 2 : 4;
+	// if ( version != ver ) return AFUNC_BADVERSION;
 	//
 	if (testGlobal.build() == 429 && testGlobal.version() != 2)
 		return AFUNC_BADVERSION;
 
-   message.info(testGlobal.revision());
+	message.info(testGlobal.revision());
 
-   /* get the message and panels functions */
+	/* get the message and panels functions */
 
-   //msg = global( LWMESSAGEFUNCS_GLOBAL, GFUSE_TRANSIENT );
-   panf = (LWPanelFuncs *)global( LWPANELFUNCS_GLOBAL, GFUSE_TRANSIENT );
-   //if ( !msg || !panf )
-   if ( !panf )
-      return AFUNC_BADGLOBAL;
+	panf = (LWPanelFuncs *)global( LWPANELFUNCS_GLOBAL, GFUSE_TRANSIENT );
+	if ( !panf )
+		return AFUNC_BADGLOBAL;
 
-   /* initialize the panels functions and create a panel */
+	/* initialize the panels functions and create a panel */
 
-   panf->globalFun = global;
+	panf->globalFun = global;
 
-   panel = PAN_CREATE( panf, "Hello World!" );
-   if ( !panel ) return AFUNC_BADGLOBAL;
+	panel = PAN_CREATE( panf, "Hello World!" );
+	if ( !panel ) return AFUNC_BADGLOBAL;
 
-   /* create an edit field on the panel and initialize its contents */
+	/* create an edit field on the panel and initialize its contents */
 
-   ctl = STR_CTL( panf, panel, "Edit Me", 40 );
-   SET_STR( ctl, edit, sizeof( edit ));
+	ctl = STR_CTL( panf, panel, "Edit Me", 40 );
+	SET_STR( ctl, edit, sizeof( edit ));
 
-   /* display the panel; this waits until the user closes it */
+	/* display the panel; this waits until the user closes it */
 
-   ok = panf->open( panel, PANF_BLOCKING | PANF_CANCEL );
+	ok = panf->open( panel, PANF_BLOCKING | PANF_CANCEL );
 
-   /* ok is TRUE if the user pressed OK, FALSE if he or she pressed Cancel */
+	/* ok is TRUE if the user pressed OK, FALSE if he or she pressed Cancel */
 
-   if ( ok )
-      GET_STR( ctl, edit, sizeof( edit ));
+	if ( ok )
+		GET_STR( ctl, edit, sizeof( edit ));
 
-   /* free the panel */
+	/* free the panel */
 
-   PAN_KILL( panf, panel );
+	PAN_KILL( panf, panel );
 
-   /* display the contents of the edit string */
+	/* display the contents of the edit string */
 
-   // msg->info( "The edit string contains:", edit );
-   message.warning( "The edit string contains:", edit );
+	message.warning( "The edit string contains:", edit );
 
-   /* while we're here, let's issue a command */
+	/* while we're here, let's issue a command */
 
-   // msg->info( "I'm going to issue the \"About\" command now.", NULL );
-   if (message.yesNo( "It's up to you ...",
-   		"Issue the \"About\" command now?") == 1)
+	if (message.yesNo( "It's up to you ...",
+		"Issue the \"About\" command now?") == 1)
 			local->evaluate( local->data, "About" );
 
-	if (alertLevel)
+	// Put the alertLevel back where we found it.
+	//
+	if (alertLevel > 0)
 	{
 		alertLevel += 0x30;
 		alertString[strlen(alertString) - 1] = (char)alertLevel;
 		local->evaluate( local->data, alertString );
 	}
-   /* done! */
+	/* done! */
 
-   return returnValue;
+	return returnValue;
 }
 
 
@@ -226,6 +238,6 @@ different languages, if you like.
 ====================================================================== */
 
 ServerRecord ServerDesc[] = {
-   { LWLAYOUTGENERIC_CLASS, "HelloWorld", DemoGeneric },
-   { NULL }
+	{ LWLAYOUTGENERIC_CLASS, "HelloWorld", DemoGeneric },
+	{ NULL }
 };

@@ -10,7 +10,7 @@
 ///	  LWPPGlobal::ProductInfo - static storage.
 ///	  LWPPGlobal::LocaleInfo  - static storage.
 ///
-///	@Author	CWCunningham
+///	\Author	CWCunningham
 ///
 //=============================================================================
 
@@ -22,12 +22,12 @@ namespace lwpp
 {
 
 /// Wont link unless we set aside storage space for statics.
-/*\@{*/
+/* @{ */
 GlobalFunc   *LWPPGlobal::GLOBAL      = NULL;
 unsigned long LWPPGlobal::SystemID    = 0;
 unsigned long LWPPGlobal::ProductInfo = 0;
 unsigned long LWPPGlobal::LocaleInfo  = 0;
-/*\@}*/
+/* @} */
 
 /// utility function for revision() member function.
 /// Tested OK
@@ -60,8 +60,8 @@ LWPPGlobal::LWPPGlobal(GlobalFunc* global, long version)
 		//
 		LocaleInfo  = (unsigned long)
 			GLOBAL(LWLOCALEINFO_GLOBAL, GFUSE_TRANSIENT);
-		LocaleInfo &= 0x0000ffff;
-		LocaleInfo |= (version << 16);
+		LocaleInfo &= 0x0000ffff; // Strip away reserved info.
+		pluginVersion = version;
 	}
 }
 
@@ -112,7 +112,7 @@ const char * LWPPGlobal::revision()
 		strcat(returnValue, dot);
 		strcat(returnValue, ulAsString(revisionMinor()));
 		strcat(returnValue, dot);
-		strcat(returnValue, ulAsString(version()));
+		strcat(returnValue, ulAsString((unsigned long)version()));
 		strcat(returnValue, " Build ");
 		strcat(returnValue, ulAsString(build()));
 		strcat(returnValue, "] ");
