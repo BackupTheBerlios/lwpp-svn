@@ -10,7 +10,6 @@
 class UnMultiply 
 : public lwpp::ImageFilterXPanelHandler
 {
-	int magicnumber;
 	LWFVector bgRGB; // User defined background colour
 	
 	bool	  useRGBColour;

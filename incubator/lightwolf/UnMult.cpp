@@ -16,8 +16,7 @@
  * Initialize variables.
  */
 UnMultiply::UnMultiply(GlobalFunc *g, void *context, LWError *err) : 
-lwpp::ImageFilterXPanelHandler(g, context, err),
-magicnumber(0x01234567)
+lwpp::ImageFilterXPanelHandler(g, context, err)
 {
 	threshold	 = 0.0;
 	useThresh	 = false;
