@@ -2,7 +2,7 @@
 #define LWPP_RENDER_H
 //=============================================================================
 ///
-/// \File globalWrap.h
+/// \File lwppRender.h
 ///   Declaration and definition of LWPPInterfaceInfo
 ///
 /// CONTENTS:
