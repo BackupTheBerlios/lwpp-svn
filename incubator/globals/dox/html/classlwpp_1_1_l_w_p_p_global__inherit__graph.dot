@@ -1,0 +1,16 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+  node [fontname="Helvetica",fontsize=10,shape=record];
+  Node1 [label="lwpp::LWPPGlobal",height=0.2,width=0.4,color="white", fillcolor="black", style="filled" fontcolor="white"];
+  Node1 -> Node2 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="Helvetica"];
+  Node2 [label="lwpp::LWPPColorActivate",height=0.2,width=0.4,color="black",URL="$classlwpp_1_1_l_w_p_p_color_activate.html"];
+  Node1 -> Node3 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="Helvetica"];
+  Node3 [label="lwpp::LWPPFileRequester",height=0.2,width=0.4,color="black",URL="$classlwpp_1_1_l_w_p_p_file_requester.html"];
+  Node1 -> Node4 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="Helvetica"];
+  Node4 [label="lwpp::LWPPInterfaceInfo",height=0.2,width=0.4,color="black",URL="$classlwpp_1_1_l_w_p_p_interface_info.html"];
+  Node1 -> Node5 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="Helvetica"];
+  Node5 [label="lwpp::LWPPMessageFuncs",height=0.2,width=0.4,color="black",URL="$classlwpp_1_1_l_w_p_p_message_funcs.html"];
+  Node1 -> Node6 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="Helvetica"];
+  Node6 [label="lwpp::LWPPObjectFuncs",height=0.2,width=0.4,color="black",URL="$classlwpp_1_1_l_w_p_p_object_funcs.html"];
+}
