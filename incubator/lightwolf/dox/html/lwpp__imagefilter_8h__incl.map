@@ -1,5 +1,5 @@
 base referer
-rect $lwpp__xpanel_8h.html 126,231 233,258
-rect $lwpp__handler_8h.html 188,157 300,183
-rect $lwpp__panel_8h.html 257,231 358,258
-rect $lwpp__debug_8h.html 413,82 517,109
+rect $lwpp__xpanel_8h.html 188,83 294,110
+rect $lwpp__panel_8h.html 190,134 292,161
+rect $lwpp__handler_8h.html 344,109 456,135
+rect $lwpp__debug_8h.html 505,210 609,237

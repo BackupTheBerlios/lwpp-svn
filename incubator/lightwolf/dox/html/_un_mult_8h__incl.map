@@ -1,6 +1,6 @@
 base referer
-rect $lwpp__imagefilter_8h.html 271,306 402,333
-rect $lwpp__xpanel_8h.html 219,232 326,258
-rect $lwpp__handler_8h.html 281,157 393,184
-rect $lwpp__panel_8h.html 350,232 451,258
-rect $lwpp__debug_8h.html 506,82 610,109
+rect $lwpp__imagefilter_8h.html 133,160 264,186
+rect $lwpp__xpanel_8h.html 313,134 420,161
+rect $lwpp__panel_8h.html 316,185 417,212
+rect $lwpp__handler_8h.html 469,160 581,186
+rect $lwpp__debug_8h.html 630,261 734,288
