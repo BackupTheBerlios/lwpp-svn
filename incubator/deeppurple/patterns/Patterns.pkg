@@ -1,0 +1,9 @@
+#ifndef PATTERNS_INCLUDED
+#define PATTERNS_INCLUDED
+
+#include "C++Patterns/Referencable.h"
+#include "C++Patterns/Observer.h"
+#include "C++Patterns/Singleton.h"
+#include "C++Patterns/Autolist.h"
+
+#endif //PATTERNS_INCLUDED

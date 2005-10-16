@@ -1,0 +1,7 @@
+#ifndef XPANEL_INCLUDED
+#define XPANEL_INCLUDED
+
+#include "XPanel.h"
+#include "XControls.h"
+
+#endif // XPANEL_INCLUDED

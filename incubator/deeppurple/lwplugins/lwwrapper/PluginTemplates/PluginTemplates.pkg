@@ -1,0 +1,22 @@
+#ifndef PLUGINTEMPLATES_PKG_INCLUDED
+#define PLUGINTEMPLATES_PKG_INCLUDED
+
+#include "Interface.h"
+#include "Interface_Adaptor.h"
+
+#include "GenericPlugin.h"
+#include "GenericPluginPanel.h"
+
+#include "CustomObject_Adaptor.h"
+#include "CustomObject.h"
+
+#include "Master_Adaptor.h"
+#include "Master.h"
+
+#include "ProceduralTexture_Adaptor.h"
+#include "ProceduralTexture.h"
+
+#include "VolumeHandler_Adaptor.h"
+#include "VolumeHandler.h"
+
+#endif  // PLUGINTEMPLATES_PKG_INCLUDED

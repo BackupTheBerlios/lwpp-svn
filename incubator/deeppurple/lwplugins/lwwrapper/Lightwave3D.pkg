@@ -1,0 +1,9 @@
+#ifndef LIGHTWAVE3D_PKG_INCLUDED
+#define LIGHTWAVE3D_PKG_INCLUDED
+
+#include "LWcommon/LWcommon.pkg"
+#include "PluginTemplates/PluginTemplates.pkg"
+#include "Panel/Panel.pkg"
+#include "XPanel/XPanel.pkg"
+
+#endif

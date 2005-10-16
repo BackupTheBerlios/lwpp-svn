@@ -1,0 +1,15 @@
+#ifndef LWCOMMON_INCLUDED
+#define LWCOMMON_INCLUDED
+
+#include "Lightwave3D.h"  // Why is Lightwave3D not able to compile?
+#include "SceneItem.h"
+#include "ProgressMonitor.h"
+#include "LWlib.h"
+#include "FileLib.h"
+#include "LWSceneGraph.h"
+#include "LWSave.h"
+#include "LWLoad.h"
+#include "LWChannel.h"
+#include "LWEnvelope.h"
+
+#endif // LWCOMMON_INCLUDED

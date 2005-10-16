@@ -1,0 +1,7 @@
+#ifndef PANEL_PKG_INCLUDED
+#define PANEL_PKG_INCLUDED
+
+#include "Panel.h"
+#include "Controls.h"
+
+#endif // PANEL_PKG_INCLUDED
